@@ -1,0 +1,40 @@
+<div class="container">
+
+
+ <h1>
+
+  <%= @restaurant.name %>
+
+  <%= link_to(restaurant_path(@restaurant), method: :delete, data: { confirm: "ARE YOU SURE ?"}) do %>
+    <i class="fas fa-trash-alt"></i>
+  <% end %>
+
+  <%= link_to(edit_restaurant_path) do %>
+    <i class="fas fa-pen"></i>
+  <% end %>
+
+ </h1>
+
+ <p>  <%= @restaurant.address %></p>
+  <p>  <%= @restaurant.phone_number%></p>
+  <p>  <%= @restaurant.category%></p>
+  <ul> <br>
+
+  <% @restaurant.reviews.each do |review| %>
+  <li> Review: <%= review.content %>
+  <%= link_to(review_path(review), method: :delete, data: { confirm: "ARE YOU SURE ?"}) do %>
+    <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </li>
+  Rating: <%= review.rating %> <br>
+  <br>
+  <%end  %>
+  <br>
+  </ul>
+  <div class="container">
+  <%= link_to("Click to add Review", new_restaurant_review_path(@restaurant)) %>
+  </div>
+
+ <%= link_to "Back to all restaurants" , restaurants_path %>
+
+</div>
